@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const pagesPath = 'pages';
-const distsPath = 'dist';
+const staticPath = 'static';
 const templatePath = 'template.html';
 
 start();
@@ -15,9 +15,9 @@ async function start() {
 
     const data = await fs.readFile(pagePath, 'utf-8');
     const page = makePage(template, data);
-    const distPath = pagePath.replace(pagesPath, distsPath);
 
-    console.log(data);
+    const outPath = pagePath.replace(pagesPath, staticPath);
+    await fs.writeFile(outPath, page);
   }
 }
 
