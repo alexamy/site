@@ -1,23 +1,31 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-async function readFilesRecursively(dirPath, fileList = []) {
+const pagesPath = './pages';
+
+start();
+
+async function start() {
+  for await (const filePath of listFiles(pagesPath)) {
+    console.log(filePath);
+  }
+}
+
+async function* listFiles(directoryPath) {
   try {
-    const entries = await fs.readdir(dirPath, { withFileTypes: true });
+    const entries = await fs.readdir(directoryPath, { withFileTypes: true });
 
     for (const entry of entries) {
-      const fullPath = path.join(dirPath, entry.name);
+      const fullPath = path.join(directoryPath, entry.name);
 
       if (entry.isDirectory()) {
-        await readFilesRecursively(fullPath, fileList);
+        yield* listFiles(fullPath);
       } else if (entry.isFile()) {
-        fileList.push(fullPath);
+        yield fullPath;
       }
     }
-
-    return fileList;
   } catch (err) {
-    console.error(`Error reading directory ${dirPath}:`, err.message);
+    console.error(`Error reading directory ${directoryPath}:`, err.message);
     return fileList;
   }
 }
