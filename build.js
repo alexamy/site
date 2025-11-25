@@ -1,14 +1,28 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const pagesPath = './pages';
+const pagesPath = 'pages';
+const distsPath = 'dist';
+const templatePath = 'template.html';
 
 start();
 
 async function start() {
-  for await (const filePath of listFiles(pagesPath)) {
-    console.log(filePath);
+  const template = await fs.readFile(templatePath, 'utf-8');
+
+  for await (const pagePath of listFiles(pagesPath)) {
+    if (!pagePath.endsWith('.html')) continue;
+
+    const data = await fs.readFile(pagePath, 'utf-8');
+    const page = makePage(template, data);
+    const distPath = pagePath.replace(pagesPath, distsPath);
+
+    console.log(data);
   }
+}
+
+function makePage(template, data) {
+  return '';
 }
 
 async function* listFiles(directoryPath) {
