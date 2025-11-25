@@ -7,6 +7,7 @@ const templatePath = 'template.html';
 
 start();
 
+/** Build the site. */
 async function start() {
   const template = await fs.readFile(templatePath, 'utf-8');
 
@@ -23,6 +24,7 @@ async function start() {
   }
 }
 
+/** Insert page data into the template. */
 function makePage(template, data) {
   const parts = data.split('<!---->').map((s) => s.trim());
 
@@ -36,6 +38,7 @@ function makePage(template, data) {
   return page;
 }
 
+/** Recursively list all files in the directory. */
 async function* listFiles(directoryPath) {
   try {
     const entries = await fs.readdir(directoryPath, { withFileTypes: true });
