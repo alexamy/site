@@ -17,6 +17,7 @@ async function start() {
     const page = makePage(template, data);
 
     const outPath = pagePath.replace(pagesPath, staticPath);
+    await fs.mkdir(path.dirname(outPath), { recursive: true });
     await fs.writeFile(outPath, page);
   }
 }
