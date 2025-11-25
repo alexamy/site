@@ -24,7 +24,16 @@ async function start() {
 }
 
 function makePage(template, data) {
-  return '';
+  const parts = data.split('<!---->').map((s) => s.trim());
+
+  if (parts.length !== 2) {
+    throw new Error('Use single page separator only! (<!---->)');
+  }
+
+  const [head, body] = parts;
+  const page = template.replace('{{head}}', head).replace('{{body}}', body);
+
+  return page;
 }
 
 async function* listFiles(directoryPath) {
