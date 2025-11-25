@@ -40,20 +40,15 @@ function makePage(template, data) {
 
 /** Recursively list all files in the directory. */
 async function* listFiles(directoryPath) {
-  try {
-    const entries = await fs.readdir(directoryPath, { withFileTypes: true });
+  const entries = await fs.readdir(directoryPath, { withFileTypes: true });
 
-    for (const entry of entries) {
-      const fullPath = path.join(directoryPath, entry.name);
+  for (const entry of entries) {
+    const fullPath = path.join(directoryPath, entry.name);
 
-      if (entry.isDirectory()) {
-        yield* listFiles(fullPath);
-      } else if (entry.isFile()) {
-        yield fullPath;
-      }
+    if (entry.isDirectory()) {
+      yield* listFiles(fullPath);
+    } else if (entry.isFile()) {
+      yield fullPath;
     }
-  } catch (err) {
-    console.error(`Error reading directory ${directoryPath}:`, err.message);
-    return fileList;
   }
 }
