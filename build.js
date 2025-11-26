@@ -1,23 +1,19 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const pagesPath = 'pages';
-const staticPath = 'static';
-const templatePath = 'template.html';
-
 start();
 
 /** Build the site. */
 async function start() {
-  const template = await fs.readFile(templatePath, 'utf-8');
+  const template = await fs.readFile('template.html', 'utf-8');
 
-  for await (const pagePath of listFiles(pagesPath)) {
+  for await (const pagePath of listFiles('pages')) {
     if (!pagePath.endsWith('.html')) continue;
 
     const data = await fs.readFile(pagePath, 'utf-8');
     const page = makePage(template, data);
 
-    const outPath = pagePath.replace(pagesPath, staticPath);
+    const outPath = pagePath.replace(/^pages/, 'static');
     const outDir = path.dirname(outPath);
     await fs.mkdir(outDir, { recursive: true });
     await fs.writeFile(outPath, page);
