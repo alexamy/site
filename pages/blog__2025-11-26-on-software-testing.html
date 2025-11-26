@@ -15,7 +15,7 @@
 <h1>On software testing</h1>
 
 <p>These are key principles for software testing:</p>
-<ul>
+<ol>
   <li>Code without tests automatically becomes legacy code</li>
   <li>Tests are not a target in themselves</li>
   <li>Code coverage is not a target in itself (<a href="https://en.wikipedia.org/wiki/Goodhart%27s_law" target="_blank">Goodhart's law</a>)</li>
@@ -23,20 +23,23 @@
   <li>Every code path and use-case can be tested</li>
   <li>It is easier to test a non-existing code</li>
   <li>Code <i>must</i>, not <i>should</i></li>
-  <li>Tests should be isolated and streamlined</li>
+  <li>Try to keep tests isolated and streamlined</li>
   <li>Test helpers make tests harder to understand</li>
   <li>Write tests similar to the user interaction</li>
-  <li>Use <b>Arrange-Act-Assert</b> test structure:</li>
-  <ul>
-    <li>Set up the test environment</li>
-    <li>Perform actions to achieve the result</li>
-    <li>Check that the result is as expected</li>
-  </ul>
-  <li>Use <b>Red-Green-Refactor</b> development cycle:
+  <li>
+    Use <b>Arrange-Act-Assert</b> test structure:
+    <ul>
+      <li>Set up the test environment</li>
+      <li>Perform actions to achieve the result</li>
+      <li>Check that the result is as expected</li>
+    </ul>
+  </li>
+  <li>
+    Use <b>Red-Green-Refactor</b> development cycle:
     <ul>
       <li>Write the <span class="fail">failing</span> test</li>
       <li>Write the code for the test to <span class="pass">pass</span></li>
       <li>Refactor the code</li>
     </ul>
   </li>
-</ul>
+</ol>
