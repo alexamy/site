@@ -1,6 +1,10 @@
 body {
   padding: 1rem;
   margin-top: 0.8rem;
+
+  --gray: #718093;
+  --red: #e84118;
+  --green: #44bd32;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -39,10 +43,16 @@ ul {
 time {
   font-size: 0.8rem;
   font-style: italic;
-  color: gray;
+  color: var(--gray);
 }
 
-body {
-  --red: #e84118;
-  --green: #4cd137;
+footer {
+  margin-top: 2.5rem;
+}
+
+.footer-link {
+  font-size: 0.8rem;
+  font-style: italic;
+  text-decoration: none;
+  color: var(--gray);
 }
