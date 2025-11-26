@@ -31,3 +31,18 @@ ul, ol {
 li {
   margin: 0.3rem 0;
 }
+
+ul {
+  list-style: square;
+}
+
+time {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: gray;
+}
+
+body {
+  --red: #e84118;
+  --green: #4cd137;
+}
